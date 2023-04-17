@@ -1,7 +1,7 @@
 package com.haha.app.controller;
 
-import com.haha.app.model.JokeEnd;
-import com.haha.app.model.JokeStart;
+import com.haha.app.model.Punchline;
+import com.haha.app.model.Setup;
 import com.haha.app.service.JokeEndService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +15,15 @@ public class JokesController {
     @Resource
     JokeEndService jokeEndService;
 
-    @GetMapping("/getAllJokes")
-    public List<JokeStart> getTestData() {
-        List<JokeStart> result = new ArrayList<>();
+    @GetMapping("/getAllSetups")
+    public List<Setup> getTestData() {
+        List<Setup> result = new ArrayList<>();
         return result;
     }
 
-    @PostMapping("/jokeEnd")
-    JokeEnd addJokeEnd(@RequestBody JokeEnd jokeEnd) {
-       return jokeEndService.saveJokeEnd(jokeEnd);
+    @PostMapping("/puncline")
+    Punchline addPunchline(@RequestBody Punchline punchline) {
+       return jokeEndService.saveJokeEnd(punchline);
     }
 
 

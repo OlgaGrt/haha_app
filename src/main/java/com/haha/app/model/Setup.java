@@ -7,17 +7,17 @@ import lombok.Setter;
 
 import java.util.Set;
 
-@Entity(name = "joke_start")
+@Entity(name = "setup")
 @Getter
 @Setter
 @NoArgsConstructor
-public class JokeStart {
+public class Setup {
     @Id
     @GeneratedValue
     private Long id;
 
-    String jokeStartText;
+    String text;
 
     @OneToMany(cascade = {CascadeType.ALL})
-    private Set<JokeEnd> jokeEnds;
+    private Set<Punchline> punchlines;
 }

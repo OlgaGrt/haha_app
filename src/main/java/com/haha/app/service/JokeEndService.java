@@ -1,9 +1,9 @@
 package com.haha.app.service;
 
-import com.haha.app.model.JokeEnd;
-import com.haha.app.model.JokeStart;
-import com.haha.app.repository.JokeEndCrudRepository;
-import com.haha.app.repository.JokeStartPageAndSortingRepository;
+import com.haha.app.model.Punchline;
+import com.haha.app.model.Setup;
+import com.haha.app.repository.PunchlineCrudRepository;
+import com.haha.app.repository.SetupPageAndSortingRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +12,17 @@ import java.util.List;
 @Service
 public class JokeEndService {
     @Resource
-    JokeEndCrudRepository jokeEndRepository;
+    PunchlineCrudRepository jokeEndRepository;
 
     @Resource
-    JokeStartPageAndSortingRepository jokeStartPageAndSortingRepository;
+    SetupPageAndSortingRepository jokeStartPageAndSortingRepository;
 
-    public JokeEnd saveJokeEnd(final JokeEnd jokeEnd){
+    public Punchline saveJokeEnd(final Punchline jokeEnd){
         return jokeEndRepository.save(jokeEnd);
     }
 
-    public List<JokeStart> findAllJokesStart(){
-        return jokeStartPageAndSortingRepository.findAllSortByEndsCount();
+    public List<Setup> findAllJokesStart(){
+        return jokeStartPageAndSortingRepository.findAllSortByPunchlinesCount();
     }
 
 }

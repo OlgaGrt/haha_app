@@ -5,17 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "joke_end")
+import java.util.Set;
+
+@Entity(name = "punchline")
 @Getter @Setter @NoArgsConstructor
-public class JokeEnd {
+public class Punchline {
 
     @Id
     @GeneratedValue
-    @Column(name = "joke_end_id")
+    @Column(name = "punchline_id")
     private Long id;
 
-    String jokeEndText;
+    String text;
 
     @ManyToOne
-    private JokeStart jokeStart;
+    private Setup setup;
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    private Set<Like> likes;
 }

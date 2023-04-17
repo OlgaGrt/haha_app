@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "users")
+@Entity(name = "userH2")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Users {
+public class UserH2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

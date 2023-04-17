@@ -15,4 +15,11 @@ public class Like {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
+    @ManyToOne
+    private Punchline punchline;
+
+    @ManyToOne
+    private UserH2 user;
+
 }
