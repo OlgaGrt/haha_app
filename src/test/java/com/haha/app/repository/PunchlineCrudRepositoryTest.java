@@ -3,6 +3,7 @@ package com.haha.app.repository;
 import com.haha.app.model.Punchline;
 import com.haha.app.model.Setup;
 import com.haha.app.model.Like;
+import com.haha.app.service.PunchlineService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -15,7 +16,7 @@ import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class JokeEndCrudRepositoryTest {
+public class PunchlineCrudRepositoryTest {
 
     @Autowired
     SetupPageAndSortingRepository setupPageAndSortingRepository;
@@ -23,31 +24,32 @@ public class JokeEndCrudRepositoryTest {
     @Autowired
     PunchlineCrudRepository punchlineCrudRepository;
 
-    @Test
-    public void myTest() {
-        Setup setup = new Setup();
-        Setup jokeStartSaved = setupPageAndSortingRepository.save(setup);
+    @Autowired
+    LikeCrudRepository likeCrudRepository;
 
+
+    @Test
+    public void findAllPunchlinesBySetupOrderByLikesCountTest() {
         Punchline punchlineWithoutLikes = new Punchline();
-        punchlineWithoutLikes.setSetup(setup);
         punchlineCrudRepository.save(punchlineWithoutLikes);
 
         Punchline punchlineWithOneLike = new Punchline();
         Like like = new Like();
-        punchlineWithOneLike.setLikes(Set.of(like));
-        punchlineWithOneLike.setSetup(setup);
+        likeCrudRepository.save(like);
+        punchlineWithOneLike.getLikes().add(like);
         punchlineCrudRepository.save(punchlineWithOneLike);
 
         Punchline jokeEndWithTwoLikes = new Punchline();
         Like like1 = new Like();
         Like like2 = new Like();
-        jokeEndWithTwoLikes.setLikes(Set.of(like1, like2));
-        jokeEndWithTwoLikes.setSetup(setup);
+        jokeEndWithTwoLikes.getLikes().addAll(Set.of(like1, like2));
         punchlineCrudRepository.save(jokeEndWithTwoLikes);
 
-        setup.setPunchlines(Set.of(punchlineWithOneLike, punchlineWithoutLikes, jokeEndWithTwoLikes)); // explicitly set to two object in relation
+        Setup setup = new Setup();
+        setup.setPunchlines(Set.of(punchlineWithOneLike, punchlineWithoutLikes, jokeEndWithTwoLikes));
+        setupPageAndSortingRepository.save(setup);
 
-        List<Punchline> result = punchlineCrudRepository.findAllPunchlinesBySetupOrderByLikesCount(jokeStartSaved.getId());
+        List<Punchline> result = punchlineCrudRepository.findAllPunchlinesBySetupOrderByLikesCount(setup);
         List<Punchline> expectedResult = List.of(jokeEndWithTwoLikes, punchlineWithOneLike, punchlineWithoutLikes);
         Assertions.assertEquals(expectedResult, result);
     }

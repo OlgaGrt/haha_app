@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "setup")
@@ -18,6 +21,6 @@ public class Setup {
 
     String text;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    private Set<Punchline> punchlines;
+    @OneToMany
+    Set<Punchline> punchlines = new HashSet<>();
 }
