@@ -6,3 +6,12 @@ backend for application where users can:
 in progress
 
 api http://localhost:8080/swagger-ui/index.html
+
+
+
+
+
+
+ideas to implement
+- search by text
+- internalization
