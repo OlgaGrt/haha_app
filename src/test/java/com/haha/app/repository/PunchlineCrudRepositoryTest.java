@@ -3,7 +3,6 @@ package com.haha.app.repository;
 import com.haha.app.model.Punchline;
 import com.haha.app.model.Setup;
 import com.haha.app.model.Like;
-import com.haha.app.service.PunchlineService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;

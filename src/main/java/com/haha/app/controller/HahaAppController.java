@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class Controller {
+public class HahaAppController {
 
     @Autowired
     SetupService setupService;
