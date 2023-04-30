@@ -17,5 +17,5 @@ public class Like {
     private Long id;
 
     @OneToOne
-    UserH2 userH2;
+    User user;
 }

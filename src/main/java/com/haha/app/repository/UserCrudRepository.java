@@ -1,11 +1,14 @@
 package com.haha.app.repository;
 
-import com.haha.app.model.UserH2;
+import com.haha.app.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserCrudRepository extends CrudRepository<UserH2, Long> {
+import java.util.Optional;
 
+@Repository
+public interface UserCrudRepository extends CrudRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
 
 }
