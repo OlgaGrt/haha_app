@@ -3,24 +3,23 @@ package com.haha.app.controller;
 import com.haha.app.model.Setup;
 import com.haha.app.service.SetupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("api/v1/web")
-public class HahaAppController {
+@RestController
+@RequestMapping("api/v1/web/")
+
+public class HahaAppRestController {
 
     @Autowired
     SetupService setupService;
 
-    @GetMapping("/webPage")
-    public String getWebPage(final Model model) {
-        List<Setup> allSetups = setupService.getSetups();
-        model.addAttribute("setups", allSetups);
-        return "webPage";
+    @GetMapping("/getAllSetups")
+    public ResponseEntity<List<Setup>> getTestData() {
+        return ResponseEntity.ok(setupService.getSetups());
     }
 }
